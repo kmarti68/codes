@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handle Events</title><link rel="stylesheet" href="common.css">
+  <style>#mouseBox { padding: 2rem; background: #dce6ff; text-align: center; }</style>
+</head>
+<body>
+  <a class="back" href="../index.html">← All examples</a>
+  <h1>Handle Events</h1>
+  <div class="demo">
+    <button id="countButton">Clicked 0 times</button>
+    <label for="nameInput">Type your name</label>
+    <input id="nameInput" type="text" placeholder="Your name">
+    <p id="typingMessage">Hello!</p>
+    <div id="mouseBox">Move the mouse over me</div>
+  </div>
+  <script>
+    let count = 0;
+    const countButton = document.querySelector('#countButton');
+    countButton.addEventListener('click', function () {
+      count = count + 1;
+      countButton.textContent = 'Clicked ' + count + ' times';
+    });
+
+    document.querySelector('#nameInput').addEventListener('input', function (event) {
+      document.querySelector('#typingMessage').textContent = 'Hello, ' + event.target.value + '!';
+    });
+
+    const mouseBox = document.querySelector('#mouseBox');
+    mouseBox.addEventListener('mouseenter', function () { mouseBox.textContent = 'Mouse entered!'; });
+    mouseBox.addEventListener('mouseleave', function () { mouseBox.textContent = 'Mouse left!'; });
+  </script>
+</body>
+</html>

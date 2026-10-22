@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tables and Form Controls</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Tables and Form Controls</h1>
+
+    <h2>1. Basic Table</h2>
+    <p>A table uses rows and columns to organize information.</p>
+
+    <table>
+        <caption>Student Grades</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ana</td>
+                <td>HTML</td>
+                <td>95</td>
+            </tr>
+            <tr>
+                <td>Ben</td>
+                <td>HTML</td>
+                <td>88</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <code>&lt;table&gt;</code> creates the table,
+        <code>&lt;tr&gt;</code> creates a row,
+        <code>&lt;th&gt;</code> creates a heading cell, and
+        <code>&lt;td&gt;</code> creates a data cell.
+    </p>
+
+    <h2>2. Colspan</h2>
+    <p><code>colspan</code> makes one cell cover more than one column.</p>
+
+    <table>
+        <tr>
+            <th colspan="2">Student Name</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>Ana</td>
+            <td>Lopez</td>
+            <td>95</td>
+        </tr>
+    </table>
+
+    <h2>3. Rowspan</h2>
+    <p><code>rowspan</code> makes one cell cover more than one row.</p>
+
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Student</th>
+        </tr>
+        <tr>
+            <td rowspan="2">HTML</td>
+            <td>Ana</td>
+        </tr>
+        <tr>
+            <td>Ben</td>
+        </tr>
+    </table>
+
+    <h2>4. Simple Form</h2>
+    <p>A form collects information from a user.</p>
+
+    <form action="#" method="get">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </p>
+
+        <p>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </p>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <h2>5. More Form Controls</h2>
+
+    <form>
+        <p>
+            <label for="student-name">Name:</label>
+            <input type="text" id="student-name" name="studentName">
+        </p>
+
+        <p>
+            <label for="course">Course:</label>
+            <select id="course" name="course">
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+            </select>
+        </p>
+
+        <p>Class time:</p>
+        <input type="radio" id="morning" name="classTime" value="morning">
+        <label for="morning">Morning</label>
+
+        <input type="radio" id="afternoon" name="classTime" value="afternoon">
+        <label for="afternoon">Afternoon</label>
+
+        <p>Topics you like:</p>
+        <input type="checkbox" id="tables" name="topics" value="tables">
+        <label for="tables">Tables</label>
+
+        <input type="checkbox" id="forms" name="topics" value="forms">
+        <label for="forms">Forms</label>
+
+        <p>
+            <button type="submit">Submit</button>
+            <button type="reset">Clear</button>
+        </p>
+    </form>
+
+    <h2>6. A Simple Use of a Table</h2>
+    <p>This table displays a small class schedule.</p>
+
+    <table>
+        <caption>Weekly Class Schedule</caption>
+        <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Topic</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>10:00 AM</td>
+            <td>HTML Tables</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>10:00 AM</td>
+            <td>HTML Forms</td>
+        </tr>
+    </table>
+</body>
+</html>

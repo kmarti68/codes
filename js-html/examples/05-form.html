@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read a Form</title><link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <a class="back" href="../index.html">← All examples</a>
+  <h1>Read and Check a Form</h1>
+  <form id="courseForm" class="demo">
+    <label for="studentName">Name</label>
+    <input id="studentName" type="text">
+    <label for="favoriteTopic">Favorite topic</label>
+    <select id="favoriteTopic">
+      <option value="">Choose one</option>
+      <option>HTML</option><option>CSS</option><option>JavaScript</option>
+    </select>
+    <p><button type="submit">Submit</button></p>
+    <p id="result"></p>
+  </form>
+  <script>
+    document.querySelector('#courseForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.querySelector('#studentName').value.trim();
+      const topic = document.querySelector('#favoriteTopic').value;
+      const result = document.querySelector('#result');
+
+      if (name === '' || topic === '') {
+        result.textContent = 'Please enter your name and choose a topic.';
+        result.style.color = 'crimson';
+      } else {
+        result.textContent = 'Thanks, ' + name + '! You chose ' + topic + '.';
+        result.style.color = 'green';
+      }
+    });
+  </script>
+</body>
+</html>

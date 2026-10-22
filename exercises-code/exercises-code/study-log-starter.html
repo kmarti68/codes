@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Class Exercise: Study Log</title><link rel="stylesheet" href="../examples/common.css">
+  <style>
+    #goalMessage { padding: .75rem; border-radius: 6px; background: #eef0f5; }
+    .goal-reached { color: white; background: #1f7a3a !important; font-weight: bold; }
+    #sessionList li { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">‚Üê All examples</a>
+  <h1>In-Class Exercise: Study Log</h1>
+
+  <div class="note">
+    <strong>Goal (about 15 minutes):</strong> Build a study log. The user enters a topic and the number of
+    minutes they studied. Each session is added to a list, and the page keeps a running total.
+    Your daily goal is <strong>60 minutes</strong>.
+    <br><br>
+    <strong>Do not change the HTML.</strong> Write all of your code inside the <code>&lt;script&gt;</code> tag at the bottom.
+  </div>
+
+  <form id="studyForm" class="demo">
+    <label for="topicInput">Topic</label>
+    <input id="topicInput" type="text" placeholder="Example: Arrays">
+
+    <label for="minutesInput">Minutes studied</label>
+    <input id="minutesInput" type="number" placeholder="Example: 25">
+
+    <p><button type="submit">Add session</button></p>
+    <p id="errorMessage" style="color: crimson;"></p>
+
+    <h2>Sessions</h2>
+    <ul id="sessionList"></ul>
+
+    <p>Total: <strong id="totalMinutes">0</strong> minutes</p>
+    <p id="goalMessage">Keep going! You have not reached your 60 minute goal yet.</p>
+  </form>
+
+  <script>
+    const studyForm = document.querySelector('#studyForm');
+    const topicInput = document.querySelector('#topicInput');
+    const minutesInput = document.querySelector('#minutesInput');
+    const errorMessage = document.querySelector('#errorMessage');
+    const sessionList = document.querySelector('#sessionList');
+    const totalMinutes = document.querySelector('#totalMinutes');
+    const goalMessage = document.querySelector('#goalMessage');
+    let total = 0;
+
+    studyForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const topic = topicInput.value.trim();
+      const minutes = Number(minutesInput.value);
+
+
+      if (topic === '' || !(minutes > 0)) {
+        errorMessage.textContent = 'Please enter a topic and a positive number of minutes.';
+        return;
+      }
+      errorMessage.textContent = '';
+      const sessionItem = document.createElement('li');
+      sessionItem.textContent = ${topic} ó ${minutes} min;
+      sessionList.appendChild(sessionItem);
+
+
+      // TODO 6: Add the minutes to your total and show the new total in #totalMinutes.
+
+
+      if (total >= 60) {
+        goalMessage.textContent = 'Goal reached! Great work!';
+        goalMessage.classList.add('goal-reached');
+      }
+
+
+      topicInput.value = '';
+      minutesInput.value = '';
+
+    });
+
+    // BONUS (if you finish early):
+    //   Clicking a session in the list removes it AND subtracts its minutes from the total.
+    //   Update the goal message again (remove 'goal-reached' if the total drops below 60).
+  </script>
+</body>
+</html>

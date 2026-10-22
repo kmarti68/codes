@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Page Content</title><link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <a class="back" href="../index.html">← All examples</a>
+  <h1>Change Page Content</h1>
+  <div class="demo">
+    <h2 id="greeting">Hello, student!</h2>
+    <p>JavaScript can find an HTML element and change its content.</p>
+    <button id="changeButton">Change greeting</button>
+  </div>
+  <script>
+    const greeting = document.querySelector('#greeting');
+    const changeButton = document.querySelector('#changeButton');
+
+    changeButton.addEventListener('click', function () {
+      greeting.textContent = 'Welcome to CIS 2336!';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a List</title><link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <a class="back" href="../index.html">← All examples</a>
+  <h1>Create HTML Elements</h1>
+  <div class="demo">
+    <label for="taskInput">New study task</label>
+    <input id="taskInput" type="text" placeholder="Example: Practice arrays">
+    <button id="addButton">Add task</button>
+    <ul id="taskList"></ul>
+  </div>
+  <p class="note">Click a task after adding it to remove it.</p>
+  <script>
+    const taskInput = document.querySelector('#taskInput');
+    const taskList = document.querySelector('#taskList');
+
+    document.querySelector('#addButton').addEventListener('click', function () {
+      const taskText = taskInput.value.trim();
+      if (taskText === '') return;
+
+      const newItem = document.createElement('li');
+      newItem.textContent = taskText;
+      newItem.addEventListener('click', function () {
+        newItem.remove();
+      });
+      taskList.appendChild(newItem);
+      taskInput.value = '';
+    });
+  </script>
+</body>
+</html>

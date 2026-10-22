@@ -1,0 +1,35 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #f5f7fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+.hero {
+  padding: 4rem 1.5rem;
+  color: white;
+  text-align: center;
+  background: #263b80;
+}
+.hero h1 { margin: .4rem 0; font-size: clamp(2rem, 6vw, 4rem); }
+.eyebrow { color: #ffd166; font-weight: bold; letter-spacing: .08em; }
+main { width: min(100% - 2rem, 950px); margin: 2rem auto; }
+h2 { margin-top: 2.5rem; }
+.three-jobs, .lesson-grid { display: grid; gap: 1rem; }
+.three-jobs { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.three-jobs article, .lesson-card {
+  padding: 1.25rem;
+  background: white;
+  border: 1px solid #dce1ee;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(20, 35, 70, .07);
+}
+.three-jobs strong, .three-jobs span { display: block; }
+.three-jobs strong { color: #263b80; font-size: 1.3rem; margin-bottom: .4rem; }
+.lesson-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.lesson-card { color: inherit; text-decoration: none; transition: transform .15s; }
+.lesson-card:hover { transform: translateY(-3px); border-color: #526ed3; }
+.lesson-card > span { color: #526ed3; font-weight: bold; }
+.lesson-card h3 { margin: .55rem 0; }
+.lesson-card p { margin-bottom: 0; color: #526071; }
