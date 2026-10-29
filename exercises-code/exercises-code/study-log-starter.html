@@ -61,11 +61,12 @@
       }
       errorMessage.textContent = '';
       const sessionItem = document.createElement('li');
-      sessionItem.textContent = ${topic} — ${minutes} min;
+      sessionItem.textContent = `${topic} — ${minutes} min`;
       sessionList.appendChild(sessionItem);
 
 
-      // TODO 6: Add the minutes to your total and show the new total in #totalMinutes.
+      total += minutes;
+      totalMinutes.textContent = total;
 
 
       if (total >= 60) {

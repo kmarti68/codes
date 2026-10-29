@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript in the Browser</title>
+  <link rel="stylesheet" href="../../js-html/examples/common.css">
+</head>
+<body>
+  <h1>JavaScript in the Browser</h1>
+  <p>Open DevTools (F12) → <strong>Console</strong> before clicking the button.</p>
+
+  <div class="demo">
+    <button id="inspectButton">What can the browser see?</button>
+    <ul id="results"></ul>
+  </div>
+
+  <script>
+    // =====================================================================
+    // This code runs INSIDE THE BROWSER, on the student's own computer.
+    // The browser gives JavaScript some built-in objects that only exist here:
+    //   window    - the browser tab itself
+    //   document  - the HTML page (the DOM we have been using all semester)
+    //   navigator - information about the browser
+    // =====================================================================
+
+    const results = document.querySelector('#results');
+
+    // A small helper: add one line of text to the <ul> on the page
+    function show(label, value) {
+      const item = document.createElement('li');
+      item.textContent = label + ': ' + value;
+      results.appendChild(item);
+    }
+
+    document.querySelector('#inspectButton').addEventListener('click', function () {
+      results.innerHTML = ''; // clear old results
+
+      // ---- Things the BROWSER has ----
+      show('typeof window', typeof window);           // "object"
+      show('typeof document', typeof document);       // "object"
+      show('Window width', window.innerWidth + 'px'); // size of this tab
+      show('Page title', document.title);             // read from the DOM
+
+      // ---- Things the BROWSER does NOT have ----
+      // Node.js gives server code `require` (to load modules) and `process`
+      // (information about the program). The browser does not have them,
+      // because a web page must NOT be able to read files on your computer.
+      show('typeof require', typeof require);         // "undefined"
+      show('typeof process', typeof process);         // "undefined"
+
+      // console.log in the browser prints to the DevTools console
+      console.log('Hello from the BROWSER console!');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "first-server",
+  "version": "1.0.0",
+  "description": "CIS 2336 - our first Express server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

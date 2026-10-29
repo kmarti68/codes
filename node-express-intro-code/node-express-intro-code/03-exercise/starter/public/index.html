@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Log (from the server)</title>
+  <style>
+    body { width: min(100% - 2rem, 760px); margin: 2rem auto; font-family: Arial, sans-serif; line-height: 1.55; color: #172033; }
+    .demo { margin: 1.5rem 0; padding: 1.25rem; background: #f5f7fb; border: 1px solid #dce1ee; border-radius: 10px; }
+    #goalMessage { padding: .75rem; border-radius: 6px; background: #eef0f5; }
+    .goal-reached { color: white; background: #1f7a3a !important; font-weight: bold; }
+    .error { color: crimson; }
+  </style>
+</head>
+<body>
+  <h1>Study Log</h1>
+  <p>This data comes from the <strong>server</strong>. You do not need to change this file.</p>
+
+  <div class="demo">
+    <h2>Sessions</h2>
+    <ul id="sessionList"><li>Loading...</li></ul>
+    <p>Total: <strong id="totalMinutes">?</strong> minutes</p>
+    <p id="goalMessage">Waiting for the server...</p>
+  </div>
+
+  <script>
+    // FRONTEND code (runs in the browser). It asks the server for data,
+    // then uses the same DOM skills from the Study Log exercise.
+
+    const sessionList = document.querySelector('#sessionList');
+    const totalMinutes = document.querySelector('#totalMinutes');
+    const goalMessage = document.querySelector('#goalMessage');
+
+    async function loadSessions() {
+      const response = await fetch('/api/sessions');
+      if (!response.ok) {
+        sessionList.innerHTML = '<li class="error">GET /api/sessions is not working yet (TODO 1).</li>';
+        return;
+      }
+      const sessions = await response.json();
+
+      sessionList.innerHTML = '';
+      for (const session of sessions) {
+        const item = document.createElement('li');
+        item.textContent = session.topic + ' — ' + session.minutes + ' min';
+        sessionList.appendChild(item);
+      }
+    }
+
+    async function loadTotal() {
+      const response = await fetch('/api/sessions/total');
+      if (!response.ok) {
+        goalMessage.textContent = 'GET /api/sessions/total is not working yet (TODO 2).';
+        goalMessage.classList.add('error');
+        return;
+      }
+      const data = await response.json();
+
+      totalMinutes.textContent = data.total;
+      if (data.goalReached) {
+        goalMessage.textContent = 'Goal reached! Great work!';
+        goalMessage.classList.add('goal-reached');
+      } else {
+        goalMessage.textContent = 'Keep going! You have not reached your 60 minute goal yet.';
+      }
+    }
+
+    loadSessions();
+    loadTotal();
+  </script>
+</body>
+</html>

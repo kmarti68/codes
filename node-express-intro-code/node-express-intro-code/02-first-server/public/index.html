@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talking to the Server</title>
+  <style>
+    body { width: min(100% - 2rem, 760px); margin: 2rem auto; font-family: Arial, sans-serif; line-height: 1.55; color: #172033; }
+    .demo { margin: 1.5rem 0; padding: 1.25rem; background: #f5f7fb; border: 1px solid #dce1ee; border-radius: 10px; }
+    button { padding: .65rem 1rem; color: white; background: #294db3; border: 0; border-radius: 6px; cursor: pointer; }
+    input { padding: .6rem; border: 1px solid #9ba5b8; border-radius: 5px; }
+    pre { padding: .75rem; background: #172033; color: #e7ecff; border-radius: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Browser ↔ Server</h1>
+  <p>This page was sent by our Express server. Its JavaScript runs in <strong>your browser</strong>
+     and asks the server for data with <code>fetch</code>.</p>
+
+  <div class="demo">
+    <button id="timeButton">Get server time</button>
+    <pre id="timeOutput">(click the button)</pre>
+  </div>
+
+  <div class="demo">
+    <input id="nameInput" type="text" placeholder="Your name">
+    <button id="greetButton">Greet me</button>
+    <pre id="greetOutput">(type a name and click)</pre>
+  </div>
+
+  <script>
+    // =================================================================
+    // FRONTEND code. It runs in the BROWSER, like everything we did before.
+    // New idea: fetch(url) sends a request to the server and waits for
+    // the answer. `async` / `await` mean "wait here until the answer arrives".
+    // =================================================================
+
+    document.querySelector('#timeButton').addEventListener('click', async function () {
+      // 1. Ask the server (this triggers app.get('/api/time') in server.js)
+      const response = await fetch('/api/time');
+      // 2. Turn the JSON text into a JavaScript object
+      const data = await response.json();
+      // 3. Use the DOM, as usual, to show the result
+      document.querySelector('#timeOutput').textContent =
+        data.message + '\nServer time: ' + data.serverTime + '\nServer OS: ' + data.serverPlatform;
+    });
+
+    document.querySelector('#greetButton').addEventListener('click', async function () {
+      const name = document.querySelector('#nameInput').value.trim() || 'stranger';
+      // encodeURIComponent makes names with spaces safe inside a URL
+      const response = await fetch('/api/greet/' + encodeURIComponent(name));
+      const data = await response.json();
+      document.querySelector('#greetOutput').textContent = data.greeting;
+    });
+  </script>
+</body>
+</html>
